@@ -19,7 +19,878 @@
   --gray5: #515154;
   --gray6: #1d1d1f;
   --gold: #BF9B6A;
+  --gold-light: #e8d5b5;<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS Summit Strategies — Mit Immobilien zur Freiheit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --gray1: #f5f5f7;
+  --gray2: #e8e8ed;
+  --gray3: #d2d2d7;
+  --gray4: #86868b;
+  --gray5: #515154;
+  --gray6: #1d1d1f;
+  --gold: #BF9B6A;
   --gold-light: #e8d5b5;
+  --f: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f);
+  background: var(--white);
+  color: var(--gray6);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 22px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.nav-logo-img {
+  width: 28px; height: 28px; border-radius: 7px;
+  overflow: hidden; background: var(--gray6);
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-img img { width: 100%; height: 100%; object-fit: contain; padding: 2px; filter: invert(1); }
+.nav-logo-rs { font-size: 11px; font-weight: 800; color: #fff; }
+.nav-logo-name { font-size: 14px; font-weight: 600; color: var(--gray6); letter-spacing: -.01em; }
+
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 400; color: var(--gray5);
+  text-decoration: none; padding: 6px 14px; border-radius: 6px;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--black); }
+
+.nav-cta {
+  font-size: 13px; font-weight: 500; color: var(--gold);
+  text-decoration: none;
+  padding: 7px 16px; border-radius: 20px;
+  border: 1px solid var(--gold);
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover { background: var(--gold); color: #fff; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 700px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  padding-bottom: 90px;
+}
+
+/* Full-bleed background image via Unsplash */
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=2000&q=85');
+  background-size: cover;
+  background-position: center 30%;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero-bg.loaded { transform: scale(1); }
+
+/* Dark gradient overlay — text readable */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.05) 0%,
+    rgba(0,0,0,.1) 40%,
+    rgba(0,0,0,.55) 75%,
+    rgba(0,0,0,.75) 100%
+  );
+}
+
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  max-width: 860px;
+  padding: 0 24px;
+}
+
+.hero-eyebrow {
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,.7);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeup .9s .2s both;
+}
+
+.hero-h {
+  font-size: clamp(44px, 6.5vw, 84px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  color: #fff;
+  margin-bottom: 22px;
+  animation: fadeup .9s .3s both;
+}
+.hero-h em {
+  font-style: normal;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  color: rgba(255,255,255,.8);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto 40px;
+  animation: fadeup .9s .4s both;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  animation: fadeup .9s .5s both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #25D366; color: #fff;
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 980px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  transition: filter .2s, transform .15s;
+}
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff; font-size: 15px; font-weight: 500;
+  padding: 14px 24px; border-radius: 980px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,.25); }
+
+/* Stats strip inside hero */
+.hero-stats {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+  display: flex; justify-content: center;
+  gap: 0;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  animation: fadeup .9s .7s both;
+}
+.hstat {
+  padding: 20px 52px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.hstat:last-child { border-right: none; }
+.hstat-num {
+  font-size: 28px; font-weight: 700;
+  color: #fff; letter-spacing: -.02em; line-height: 1;
+}
+.hstat-num sup { font-size: 16px; color: var(--gold-light); }
+.hstat-label { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 4px; letter-spacing: .04em; }
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
+  z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  animation: fadeup .9s .9s both;
+  cursor: pointer;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.6));
+  animation: scrollpulse 2s infinite;
+}
+@keyframes scrollpulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ─── FEATURE STRIP ─── */
+.feature-strip {
+  background: var(--gray1);
+  border-top: 1px solid var(--gray2);
+  border-bottom: 1px solid var(--gray2);
+  padding: 0;
+  overflow: hidden;
+}
+.feature-strip-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; overflow-x: auto;
+}
+.feature-strip-inner::-webkit-scrollbar { display: none; }
+.fstrip-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 22px 40px;
+  border-right: 1px solid var(--gray2);
+  white-space: nowrap; flex-shrink: 0;
+}
+.fstrip-item:last-child { border-right: none; }
+.fstrip-ico { font-size: 20px; }
+.fstrip-text { font-size: 14px; font-weight: 500; color: var(--gray6); }
+.fstrip-sub { font-size: 12px; color: var(--gray4); margin-top: 1px; }
+
+/* ─── GENERIC SECTION ─── */
+.section {
+  padding: 100px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.section-center { text-align: center; }
+.section-label {
+  font-size: 13px; font-weight: 600;
+  color: var(--gold); letter-spacing: .06em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-h {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700; line-height: 1.07;
+  letter-spacing: -.03em;
+  color: var(--gray6);
+}
+.section-h em { font-style: normal; color: var(--gold); }
+.section-p {
+  font-size: 18px; font-weight: 300;
+  color: var(--gray4); line-height: 1.75;
+  max-width: 580px;
+}
+.section-p.center { margin: 0 auto; text-align: center; }
+
+/* ─── PHILOSOPHY: IMAGE + TEXT ─── */
+.split-section {
+  padding: 0;
+  border-top: 1px solid var(--gray2);
+}
+.split-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 620px;
+}
+.split-img {
+  position: relative; overflow: hidden;
+  background: var(--gray1);
+}
+.split-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .8s ease;
+}
+.split-img:hover img { transform: scale(1.03); }
+.split-body {
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.split-body .section-p { max-width: 100%; margin-top: 20px; }
+.pillar-list { margin-top: 44px; }
+.pillar {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--gray2);
+}
+.pillar:first-child { border-top: 1px solid var(--gray2); }
+.pillar-n {
+  font-size: 11px; font-weight: 700;
+  color: var(--gold); letter-spacing: .06em;
+  padding-top: 2px; flex-shrink: 0; width: 22px;
+}
+.pillar-title { font-size: 15px; font-weight: 600; color: var(--gray6); }
+.pillar-desc { font-size: 13px; color: var(--gray4); margin-top: 3px; line-height: 1.6; }
+
+/* ─── SERVICES GRID ─── */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--gray2);
+  border: 1px solid var(--gray2);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+.svc-card {
+  background: var(--white);
+  padding: 40px 36px;
+  transition: background .25s;
+  cursor: default;
+}
+.svc-card:hover { background: var(--gray1); }
+.svc-ico { font-size: 28px; margin-bottom: 20px; display: block; }
+.svc-title { font-size: 18px; font-weight: 600; color: var(--gray6); margin-bottom: 10px; letter-spacing: -.01em; }
+.svc-text { font-size: 14px; color: var(--gray4); line-height: 1.7; }
+.svc-link {
+  display: inline-block; margin-top: 16px;
+  font-size: 13px; font-weight: 500; color: var(--gold);
+  text-decoration: none; letter-spacing: -.01em;
+}
+.svc-link::after { content: ' →'; }
+
+/* ─── PROCESS ─── */
+.process-section {
+  background: var(--gray6);
+  padding: 100px 24px;
+}
+.process-inner { max-width: 1000px; margin: 0 auto; }
+.process-inner .section-h { color: var(--white); }
+.process-inner .section-label { color: var(--gold-light); }
+.process-inner .section-p { color: rgba(255,255,255,.5); }
+.chess-steps {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 2px; margin-top: 56px;
+  background: rgba(255,255,255,.06);
+  border-radius: 16px; overflow: hidden;
+}
+.cs {
+  padding: 28px 20px;
+  background: rgba(255,255,255,.03);
+  transition: background .25s;
+}
+.cs:hover { background: rgba(255,255,255,.07); }
+.cs.highlight { background: rgba(191,155,106,.12); }
+.cs-piece { font-size: 26px; margin-bottom: 16px; display: block; line-height: 1; }
+.cs-n { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.3); letter-spacing: .08em; text-transform: uppercase; }
+.cs-sub { font-size: 10px; font-style: italic; color: var(--gold); margin: 5px 0; font-weight: 400; }
+.cs-t { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.cs-d { font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.6; }
+
+/* ─── QUOTE ─── */
+.quote-section {
+  border-top: 1px solid var(--gray2);
+  border-bottom: 1px solid var(--gray2);
+  padding: 100px 24px;
+  text-align: center;
+}
+.big-quote {
+  font-size: clamp(26px, 3.8vw, 48px);
+  font-weight: 300;
+  letter-spacing: -.025em;
+  line-height: 1.35;
+  color: var(--gray6);
+  max-width: 840px;
+  margin: 0 auto 28px;
+}
+.big-quote strong { font-weight: 700; }
+.quote-attr { font-size: 14px; color: var(--gray4); }
+.quote-attr strong { color: var(--gray6); font-weight: 600; }
+
+/* ─── STORY / TIMELINE ─── */
+.timeline-section {
+  border-top: 1px solid var(--gray2);
+}
+.timeline-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.tl-left {
+  padding: 100px 64px 100px 24px;
+  position: sticky; top: 52px;
+  align-self: start;
+}
+.tl-right { padding: 100px 24px 100px 64px; border-left: 1px solid var(--gray2); }
+.tl-row {
+  display: flex; gap: 24px;
+  padding: 32px 0; border-bottom: 1px solid var(--gray2);
+}
+.tl-row:first-child { border-top: 1px solid var(--gray2); }
+.tl-meta { width: 90px; flex-shrink: 0; }
+.tl-era { font-size: 10px; font-weight: 700; color: var(--gray4); text-transform: uppercase; letter-spacing: .07em; }
+.tl-tag {
+  display: inline-block; margin-top: 6px;
+  background: var(--gray1); color: var(--gold);
+  font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  padding: 3px 8px; border-radius: 5px;
+}
+.tl-tag.green { background: #f0fbf4; color: #1a8a3e; }
+.tl-h { font-size: 16px; font-weight: 600; color: var(--gray6); margin-bottom: 6px; letter-spacing: -.01em; }
+.tl-p { font-size: 14px; color: var(--gray4); line-height: 1.75; }
+
+/* ─── TESTIMONIALS ─── */
+.testi-section { background: var(--gray1); padding: 100px 24px; }
+.testi-inner { max-width: 1000px; margin: 0 auto; }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
+.tcard {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 32px 28px;
+  transition: box-shadow .3s, transform .25s;
+}
+.tcard:hover { box-shadow: 0 12px 40px rgba(0,0,0,.08); transform: translateY(-3px); }
+.tcard-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; }
+.tcard-text { font-size: 15px; color: var(--gray5); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+.tcard-author { display: flex; align-items: center; gap: 12px; }
+.tcard-av {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gray6), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff;
+}
+.tcard-name { font-size: 14px; font-weight: 600; color: var(--gray6); }
+.tcard-role { font-size: 12px; color: var(--gray4); margin-top: 2px; }
+
+/* ─── FAQ ─── */
+.faq-section {
+  border-top: 1px solid var(--gray2);
+  padding: 100px 24px;
+}
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-items { margin-top: 56px; }
+.faq-item { border-bottom: 1px solid var(--gray2); }
+.faq-item:first-child { border-top: 1px solid var(--gray2); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 0; cursor: pointer;
+  font-size: 16px; font-weight: 500; color: var(--gray6);
+  gap: 20px; user-select: none;
+  transition: color .2s;
+}
+.faq-q:hover { color: var(--black); }
+.faq-ico {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gray1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--gray4);
+  transition: background .2s, transform .3s, color .2s;
+}
+.faq-item.on .faq-ico { background: var(--gray6); color: #fff; transform: rotate(45deg); }
+.faq-a {
+  font-size: 15px; color: var(--gray4); line-height: 1.8;
+  max-height: 0; overflow: hidden;
+  transition: max-height .4s ease, padding-bottom .3s;
+}
+.faq-item.on .faq-a { max-height: 200px; padding-bottom: 22px; }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--gray6);
+  padding: 120px 24px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(191,155,106,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-section .section-h { color: var(--white); margin-top: 14px; }
+.cta-section .section-label { color: var(--gold-light); }
+.cta-section .section-p { color: rgba(255,255,255,.5); margin: 20px auto 44px; text-align: center; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--white); color: var(--gray6);
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 980px;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.btn-white:hover { background: var(--gray1); transform: translateY(-1px); }
+.btn-ghost-dark {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--white); font-size: 15px; font-weight: 500;
+  padding: 14px 24px; border-radius: 980px;
+  text-decoration: none; transition: border-color .2s, background .2s;
+}
+.btn-ghost-dark:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.07); }
+.cta-note { font-size: 13px; color: rgba(255,255,255,.3); margin-top: 20px; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--gray2);
+  padding: 40px 24px;
+  max-width: 1000px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+}
+.f-brand { display: flex; align-items: center; gap: 12px; }
+.f-logo {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--gray6); display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.f-logo img { width: 100%; height: 100%; object-fit: contain; padding: 3px; filter: invert(1); }
+.f-logo span { font-size: 10px; font-weight: 800; color: #fff; }
+.f-name { font-size: 14px; font-weight: 600; color: var(--gray6); }
+.f-tag { font-size: 12px; color: var(--gray4); margin-top: 1px; }
+.f-links { display: flex; gap: 24px; }
+.f-links a { font-size: 13px; color: var(--gray4); text-decoration: none; transition: color .2s; }
+.f-links a:hover { color: var(--gray6); }
+.f-copy { font-size: 12px; color: var(--gray3); }
+
+/* WA Float */
+.wa-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 800;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  text-decoration: none; transition: transform .3s, box-shadow .3s;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,.5); }
+
+/* Reveal */
+@keyframes fadeup { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+.rev { opacity:0; transform:translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.rev.in { opacity:1; transform:none; }
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hero-h { font-size: 40px; }
+  .hero-stats { flex-wrap: wrap; }
+  .hstat { padding: 16px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); width: 50%; }
+  .split-inner, .timeline-inner { grid-template-columns: 1fr; }
+  .tl-left { position: static; padding: 60px 24px 30px; }
+  .tl-right { padding: 0 24px 60px; border-left: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .chess-steps { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .feature-strip-inner { flex-wrap: nowrap; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-img">
+      <img src="RS_SUMMIT_LOGO_1.png" alt="RS" onerror="this.style.display='none'">
+    </div>
+    <span class="nav-logo-name">RS Summit Strategies</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#prozess">Prozess</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+  </ul>
+  <a href="https://wa.me/491636655970" class="nav-cta">Gespräch starten</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Immobilien-Strategieberatung &middot; DE / AT / CH</p>
+    <h1 class="hero-h">Mit Immobilien<br>zur <em>Freiheit.</em></h1>
+    <p class="hero-sub">
+      Wir begleiten dich Schritt für Schritt zur finanziellen Unabhängigkeit — strategisch, transparent und ausschließlich auf deiner Seite.
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/491636655970" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 24l6.305-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0"/></svg>
+        Kostenlos beraten lassen
+      </a>
+      <a href="#leistungen" class="btn-secondary">Mehr erfahren</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">7<sup>+</sup></div><div class="hstat-label">Jahre Erfahrung</div></div>
+    <div class="hstat"><div class="hstat-num">336<sup>+</sup></div><div class="hstat-label">Begleitete Deals</div></div>
+    <div class="hstat"><div class="hstat-num">100<sup>%</sup></div><div class="hstat-label">Auf deiner Seite</div></div>
+    <div class="hstat"><div class="hstat-num">DE<sup>/AT/CH</sup></div><div class="hstat-label">Aktionsgebiet</div></div>
+  </div>
+
+  <div class="scroll-indicator" onclick="document.querySelector('#leistungen').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<div class="feature-strip">
+  <div class="feature-strip-inner">
+    <div class="fstrip-item"><div class="fstrip-ico">♟</div><div><div class="fstrip-text">Strategie wie Schach</div><div class="fstrip-sub">Jeder Zug durchdacht</div></div></div>
+    <div class="fstrip-item"><div class="fstrip-ico">🤝</div><div><div class="fstrip-text">100% Käuferseite</div><div class="fstrip-sub">Kein Interessenkonflikt</div></div></div>
+    <div class="fstrip-item"><div class="fstrip-ico">🔍</div><div><div class="fstrip-text">Volle Transparenz</div><div class="fstrip-sub">Jede Kalkulation sichtbar</div></div></div>
+    <div class="fstrip-item"><div class="fstrip-ico">🏙️</div><div><div class="fstrip-text">DE / AT / CH</div><div class="fstrip-sub">DACH-Markt</div></div></div>
+    <div class="fstrip-item"><div class="fstrip-ico">📈</div><div><div class="fstrip-text">Tiefe statt Masse</div><div class="fstrip-sub">Qualität über alles</div></div></div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY SPLIT -->
+<div class="split-section">
+  <div class="split-inner">
+    <div class="split-img rev">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="Immobilien">
+    </div>
+    <div class="split-body">
+      <p class="section-label rev">Unsere Philosophie</p>
+      <h2 class="section-h rev">Wir stehen auf<br>deiner Seite. <em>Immer.</em></h2>
+      <p class="section-p rev" style="margin-top:18px">Klassische Berater sitzen zwischen Verkäufer und Käufer. Wir haben uns entschieden: ausschließlich für dich. Deine Ziele sind unsere Ziele — ohne Kompromisse.</p>
+      <div class="pillar-list rev">
+        <div class="pillar"><div class="pillar-n">01</div><div><div class="pillar-title">Ausschließlich für dich</div><div class="pillar-desc">Wir vertreten nur deine Interessen — niemals die des Verkäufers.</div></div></div>
+        <div class="pillar"><div class="pillar-n">02</div><div><div class="pillar-title">Volle Transparenz</div><div class="pillar-desc">Du siehst jede Kalkulation, jeden Schritt, jeden Gedanken.</div></div></div>
+        <div class="pillar"><div class="pillar-n">03</div><div><div class="pillar-title">Ganzheitliche Betreuung</div><div class="pillar-desc">Finanzierung, Steuer, Mietkonzept, Recht — alles aus einer Hand.</div></div></div>
+        <div class="pillar"><div class="pillar-n">04</div><div><div class="pillar-title">Qualität über alles</div><div class="pillar-desc">Tiefe Begleitung statt oberflächliche Masse.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="leistungen">
+  <div class="section section-center">
+    <p class="section-label rev">Was wir tun</p>
+    <h2 class="section-h rev">Strategie mit Substanz.</h2>
+    <p class="section-p center rev" style="margin-top:18px">Ob Erstinvestment, Portfolio-Optimierung oder einfach Klarheit — wir planen gemeinsam deinen nächsten Zug.</p>
+    <div class="services-grid rev">
+      <div class="svc-card">
+        <span class="svc-ico">🏠</span>
+        <div class="svc-title">Erstinvestment</div>
+        <div class="svc-text">Von der ersten Analyse bis zur Schlüsselübergabe. Wir begleiten deinen gesamten ersten Kauf.</div>
+        <a href="https://wa.me/491636655970" class="svc-link">Mehr erfahren</a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-ico">📊</span>
+        <div class="svc-title">Portfolio-Optimierung</div>
+        <div class="svc-text">Du besitzt bereits Immobilien — aber da steckt mehr drin. Wir drehen jeden Hebel.</div>
+        <a href="https://wa.me/491636655970" class="svc-link">Mehr erfahren</a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-ico">📋</span>
+        <div class="svc-title">Mietkonzept</div>
+        <div class="svc-text">Richtiger Mieter, richtige Struktur, maximierter Return. Strategie vor Zufall.</div>
+        <a href="https://wa.me/491636655970" class="svc-link">Mehr erfahren</a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-ico">🧾</span>
+        <div class="svc-title">Steuer-Strategie</div>
+        <div class="svc-text">Steuern als echter Hebel — mit spezialisierten Beratern aus unserem Netzwerk.</div>
+        <a href="https://wa.me/491636655970" class="svc-link">Mehr erfahren</a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-ico">🏦</span>
+        <div class="svc-title">Finanzierung & Recht</div>
+        <div class="svc-text">Beste Konditionen, richtige Absicherung. Vom ersten Gespräch bis zur Unterschrift.</div>
+        <a href="https://wa.me/491636655970" class="svc-link">Mehr erfahren</a>
+      </div>
+      <div class="svc-card" style="background:var(--gray6);cursor:pointer" onclick="window.location.href='https://wa.me/491636655970'">
+        <span class="svc-ico" style="filter:grayscale(1) brightness(3)">💬</span>
+        <div class="svc-title" style="color:#fff">Kostenlos beraten lassen</div>
+        <div class="svc-text" style="color:rgba(255,255,255,.5)">30 Minuten. Kein Druck. Kein Skript. Einfach ein echtes Gespräch.</div>
+        <span style="display:inline-block;margin-top:16px;font-size:13px;font-weight:500;color:var(--gold-light)">Jetzt auf WhatsApp →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="prozess">
+  <div class="process-inner">
+    <p class="section-label rev">Wie wir arbeiten</p>
+    <h2 class="section-h rev">Vom ersten Zug<br>zum <em style="-webkit-text-fill-color:var(--gold-light);color:var(--gold-light)">Schachmatt.</em></h2>
+    <p class="section-p rev" style="margin-top:16px">Wir denken strategisch — wie beim Schach. Jeder Zug ist durchdacht, jede Entscheidung geplant.</p>
+    <div class="chess-steps rev">
+      <div class="cs">
+        <span class="cs-piece">♟</span>
+        <div class="cs-n">Zug 01</div>
+        <div class="cs-sub">Das Brett vorbereiten</div>
+        <div class="cs-t">Erstgespräch</div>
+        <div class="cs-d">Kein Druck, kein Skript. Wir verstehen deine Ziele und Situation.</div>
+      </div>
+      <div class="cs">
+        <span class="cs-piece">♞</span>
+        <div class="cs-n">Zug 02</div>
+        <div class="cs-sub">Die Partie eröffnen</div>
+        <div class="cs-t">Strategie & Analyse</div>
+        <div class="cs-d">Ausgangslage klären, Hebel definieren, Roadmap entwickeln.</div>
+      </div>
+      <div class="cs">
+        <span class="cs-piece">♝</span>
+        <div class="cs-n">Zug 03</div>
+        <div class="cs-sub">Den Zug planen</div>
+        <div class="cs-t">Deal-Recherche</div>
+        <div class="cs-d">Marktunabhängige Suche — nur was wirklich zu dir passt.</div>
+      </div>
+      <div class="cs">
+        <span class="cs-piece">♜</span>
+        <div class="cs-n">Zug 04</div>
+        <div class="cs-sub">Kurz vor Schach</div>
+        <div class="cs-t">Verhandlung</div>
+        <div class="cs-d">Finanzierung, Recht, Verhandlung — wir sind bei jedem Schritt dabei.</div>
+      </div>
+      <div class="cs highlight">
+        <span class="cs-piece">♚</span>
+        <div class="cs-n" style="color:var(--gold)">Zug 05</div>
+        <div class="cs-sub">Schachmatt</div>
+        <div class="cs-t" style="color:var(--gold-light)">Abschluss & Partner</div>
+        <div class="cs-d">Dein Ziel erreicht. Wir bleiben für den nächsten Zug.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="big-quote rev">
+    <strong>„Allein ist man keiner —</strong><br>zusammen ist man einer."
+  </p>
+  <p class="quote-attr rev"><strong>Vladi</strong> &mdash; Gründer, RS Summit Strategies</p>
+</div>
+
+<!-- STORY / TIMELINE -->
+<section class="timeline-section" id="story">
+  <div class="timeline-inner">
+    <div class="tl-left">
+      <p class="section-label rev">Der Mensch dahinter</p>
+      <h2 class="section-h rev" style="margin-top:14px">Mein Weg zur<br><em>richtigen</em> Seite.</h2>
+      <p class="section-p rev" style="margin-top:18px">Ich bin nicht der Typ mit dem Porsche und dem Anzug. Ich bin derjenige, dem du vertraust — weil ich immer die Wahrheit sage.</p>
+      <a href="https://wa.me/491636655970" class="btn-primary" style="display:inline-flex;margin-top:36px">Meine Geschichte kennenlernen</a>
+    </div>
+    <div class="tl-right">
+      <div class="tl-row rev">
+        <div class="tl-meta"><div class="tl-era">Ausbildung</div><div class="tl-tag">Qualität</div></div>
+        <div><div class="tl-h">Fahrzeuglackierer</div><div class="tl-p">Qualität entsteht im Detail. Vom ersten Tag an war klar: Wer wirklich gut sein will, muss bereit sein, unbequeme Wege zu gehen.</div></div>
+      </div>
+      <div class="tl-row rev d1">
+        <div class="tl-meta"><div class="tl-era">Militär</div><div class="tl-tag">Disziplin</div></div>
+        <div><div class="tl-h">Spezialisierte Kräfte</div><div class="tl-p">Führen heißt, für andere zu denken. Der Unterschied zwischen gut und außergewöhnlich ist einzig der Wille.</div></div>
+      </div>
+      <div class="tl-row rev d2">
+        <div class="tl-meta"><div class="tl-era">Operations</div><div class="tl-tag">Präzision</div></div>
+        <div><div class="tl-h">Frankfurter Flughafen</div><div class="tl-p">Bodenständigkeit. Echte Arbeit steckt immer im Detail — und der Mensch hinter jedem Job zählt.</div></div>
+      </div>
+      <div class="tl-row rev d3">
+        <div class="tl-meta"><div class="tl-era">Vertrieb</div><div class="tl-tag">Vertrauen</div></div>
+        <div><div class="tl-h">Strukturvertrieb & Teamaufbau</div><div class="tl-p">Rekorde gesetzt — aber immer auf menschlicher Basis. Wer für Menschen denkt, gewinnt sie für immer.</div></div>
+      </div>
+      <div class="tl-row rev d4">
+        <div class="tl-meta"><div class="tl-era">Heute</div><div class="tl-tag green">Gründer</div></div>
+        <div><div class="tl-h">RS Summit Strategies</div><div class="tl-p">Meine Antwort auf ein System, das Käufer vergisst. 7+ Jahre Immobilienerfahrung, 336+ begleitete Deals.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="referenzen">
+  <div class="testi-inner">
+    <p class="section-label rev" style="text-align:center">Referenzen</p>
+    <h2 class="section-h rev" style="text-align:center;margin-top:14px">Echte Menschen.<br><em>Echte Ergebnisse.</em></h2>
+    <div class="testi-grid">
+      <div class="tcard rev">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">„Ich hatte vorher schlechte Erfahrungen. Vladi hat mir innerhalb von 3 Monaten ein Objekt gefunden, das meine Kalkulation um 20% übertrifft."</p>
+        <div class="tcard-author"><div class="tcard-av">M</div><div><div class="tcard-name">Michael K.</div><div class="tcard-role">Erstkäufer · Frankfurt</div></div></div>
+      </div>
+      <div class="tcard rev d1">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">„Kein Skript, kein Interessenkonflikt, kein Druck. Einfach echte Beratung. Mein Portfolio hat sich vollständig gewandelt."</p>
+        <div class="tcard-author"><div class="tcard-av">S</div><div><div class="tcard-name">Sarah M.</div><div class="tcard-role">Portfolio · München</div></div></div>
+      </div>
+      <div class="tcard rev d2">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">„Durch die neue Mietstruktur haben wir die Rendite meiner Bestandsimmobilie um 18% gesteigert. Das hätte ich alleine nie gesehen."</p>
+        <div class="tcard-author"><div class="tcard-av">D</div><div><div class="tcard-name">David R.</div><div class="tcard-role">Bestandshalter · Hamburg</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <p class="section-label rev" style="text-align:center">FAQ</p>
+    <h2 class="section-h rev" style="text-align:center;margin-top:14px">Fragen, die wir<br>gerne beantworten.</h2>
+    <div class="faq-items rev">
+      <div class="faq-item on"><div class="faq-q" onclick="faq(this)">Für wen ist RS Summit geeignet?<div class="faq-ico">+</div></div><div class="faq-a">Für alle zwischen 25 und 45 Jahren, die ernsthaft in Immobilien investieren möchten — egal ob Erstinvestor oder Bestandshalter. Wichtig ist deine Bereitschaft, strategisch vorzugehen.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Wie läuft das erste Gespräch ab?<div class="faq-ico">+</div></div><div class="faq-a">Unkompliziert — via WhatsApp oder Zoom. Kein Druck, kein Skript. In 30 Minuten verstehen wir deine Situation und sagen dir ehrlich, ob und wie wir helfen können.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Was ist der Unterschied zu einem Makler?<div class="faq-ico">+</div></div><div class="faq-a">Ein klassischer Makler wird vom Verkäufer beauftragt. Wir werden von dir beauftragt und arbeiten ausschließlich für deine Interessen — keine Kooperationen mit Bauträgern, keine Interessenkonflikte.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">In welchen Regionen seid ihr aktiv?<div class="faq-ico">+</div></div><div class="faq-a">Primär in Deutschland, Österreich und der Schweiz. Durch unser Netzwerk können wir aber auch grenzübergreifend beraten und begleiten.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Was brauche ich für den Start?<div class="faq-ico">+</div></div><div class="faq-a">Nichts außer einem klaren Kopf und deinen Zielen. Du brauchst kein Exposé, kein Konzept, keine Tabelle. Ein 30-minütiges Gespräch reicht.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-label">Lass uns starten</p>
+  <h2 class="section-h rev">Bereit für deinen<br>ersten Zug?</h2>
+  <p class="section-p rev">Kein Sales-Call. Kein Druck. Nur ein echtes Gespräch über deine Immobilien-Ziele.</p>
+  <div class="cta-btns rev">
+    <a href="https://wa.me/491636655970" class="btn-primary" style="font-size:15px;padding:15px 32px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 24l6.305-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0"/></svg>
+      Via WhatsApp schreiben
+    </a>
+    <a href="https://instagram.com" class="btn-ghost-dark">Instagram folgen</a>
+  </div>
+  <p class="cta-note">Verfügbar für neue Klienten ab sofort · DE / AT / CH</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">
+    <div class="f-logo">
+      <img src="RS_SUMMIT_LOGO_1.png" alt="RS" onerror="this.style.display='none'">
+    </div>
+    <div><div class="f-name">RS Summit Strategies</div><div class="f-tag">Immobilien-Strategie · DE / AT / CH</div></div>
+  </div>
+  <div class="f-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#prozess">Prozess</a>
+    <a href="#story">Story</a>
+    <a href="#referenzen">Referenzen</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="f-copy">© 2026 RS Summit Strategies</div>
+</footer>
+
+<!-- WA Float -->
+<a href="https://wa.me/491636655970" class="wa-float">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 24l6.305-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0"/></svg>
+</a>
+
+<script>
+// Nav solid
+const nav = document.querySelector('nav');
+addEventListener('scroll', () => nav.style.boxShadow = scrollY > 10 ? '0 1px 0 rgba(0,0,0,.1)' : 'none');
+
+// Hero image slow zoom
+const bg = document.getElementById('heroBg');
+setTimeout(() => bg.classList.add('loaded'), 100);
+
+// Reveal
+const io = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); });
+}, { threshold: .07, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rev').forEach(el => io.observe(el));
+
+// FAQ
+function faq(btn) {
+  const item = btn.parentElement;
+  const open = item.classList.contains('on');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('on'));
+  if (!open) item.classList.add('on');
+}
+</script>
+</body>
+</html>
+
   --f: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
